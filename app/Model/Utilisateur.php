@@ -1,7 +1,8 @@
 <?php
+namespace App\Model;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Core\Database;
 
-require_once './../Model/utilisateurs.php';
-require_once '../../Core/Database.php';
 
 class Utilisateur {
     private $id;  
@@ -12,12 +13,14 @@ class Utilisateur {
     private $role;
     private $date_creation;
 
-    public function __construct($nom=null, $prenom=null, $email=null, $mot_de_passe=null, $role=null) {
+    public function __construct($id=null,$nom=null, $prenom=null, $email=null, $mot_de_passe=null, $role=null) {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->mot_de_passe = $mot_de_passe;
         $this->role = $role;
+        $this->id = $id;
+
         Database::getInstance();
 
     }

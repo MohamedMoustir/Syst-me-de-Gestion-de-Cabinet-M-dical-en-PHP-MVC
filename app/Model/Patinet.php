@@ -1,13 +1,18 @@
 <?php
-require_once '../../Core/Database.php';
+namespace App\Model;
+require_once __DIR__ . '/../../vendor/autoload.php';
+// use Core\Database;
+use App\Model\Utilisateur;
 
-class Patinet{
+
+class Patinet extends Utilisateur{
     private $date_naissance;
     private $numerosociale;
-    public  function __construct($date_naissance,$numerosociale) {
+    public  function __construct($id,$nom, $prenom, $email, $mot_de_passe, $role,$date_naissance,$numerosociale) {
+        parent::__construct($id, $nom, $prenom, $email, $mot_de_passe, $role);
         $this->date_naissance = $date_naissance;
         $this->numerosociale = $numerosociale;
-        Database::getInstance();
+        // Database::getInstance();
     }
     
 
