@@ -1,5 +1,3 @@
-<?php var_dump($resulte->specialite); ?>
-
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
 
@@ -43,115 +41,59 @@
             </div>
         </div>
     </header>
-
-<body class="bg-gray-50">
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Prise de Rendez-vous -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-blue-600 mb-6">Prendre Rendez-vous</h2>
-
-                <form method="POST" action="../Controllers/RendezVousController.php?action=getRendezvous" class="space-y-4">
-                    <div>
-                        <label class="block text-gray-700 mb-2">Choisir un Médecin</label>
-                        <select name="id_medecin" class="w-full px-3 py-2 border rounded-md">
-
-                            <?php
-
-
-                            echo '<option value =' . htmlspecialchars($resulte->ad) . '>' . htmlspecialchars($resulte->nom) . '</option>';
-
-
-                            ?>
-
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Choisir un Médecin</label>
-                        <select name="specialite" class="w-full px-3 py-2 border rounded-md">
-
-                            <?php
-
-
-                            echo '<option>' . htmlspecialchars($resulte->specialite) . '</option>';
-
-
-
-                            ?>
-
-                        </select>
-                    </div>
-
-
-
-                    <div>
-                        <label class="block text-gray-700 mb-2">Créneau Horaire</label>
-                        <input name="time" type="hidden" id="input">
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" onclick="gettaime('09:00')"
-                                class="bg-blue-100 py-2 rounded-md hover:bg-blue-200">09:00</button>
-                            <button type="button" onclick="gettaime('10:30')"
-                                class="bg-blue-100 py-2 rounded-md hover:bg-blue-200">10:30</button type="button">
-                            <button type="button" onclick="gettaime('14:00')"
-                                class="bg-blue-100 py-2 rounded-md hover:bg-blue-200">14:00</button type="button">
-                            <button type="button" onclick="gettaime('15:30')"
-                                class="bg-blue-100 py-2 rounded-md hover:bg-blue-200">15:30</button type="button">
-                            <button type="button" onclick="gettaime('17:00')"
-                                class="bg-blue-100 py-2 rounded-md hover:bg-blue-200">17:00</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">motif</label>
-                        <textarea name="motif" class="w-full px-3 py-2 border rounded-md"></textarea>
-                    </div>
-                    <button name="Rendezvous" type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
-                        Confirmer le Rendez-vous
-                    </button>
-                </form>
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Table Container -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="text-xs uppercase bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Date</th>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Horaire</th>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Médecin</th>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Spécialité</th>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Statut</th>
+                            <th scope="col" class="px-6 py-4 text-gray-700 font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="bg-white hover:bg-gray-50 transition duration-150">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">15 Fév 2024</td>
+                            <td class="px-6 py-4">09:00</td>
+                            <td class="px-6 py-4 font-medium">Dr. Martin</td>
+                            <td class="px-6 py-4">Cardiologie</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+                                    Confirmé
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button class="text-blue-600 hover:text-blue-800 font-medium transition">Modifier</button>
+                                <button class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
+                            </td>
+                        </tr>
+                        <tr class="bg-white hover:bg-gray-50 transition duration-150">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">18 Fév 2024</td>
+                            <td class="px-6 py-4">14:30</td>
+                            <td class="px-6 py-4 font-medium">Dr. Dupont</td>
+                            <td class="px-6 py-4">Généraliste</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700">
+                                    En attente
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button class="text-blue-600 hover:text-blue-800 font-medium transition">Modifier</button>
+                                <button class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <!-- Historique des Consultations -->
-            <!-- <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-blue-600 mb-6">Historique des Consultations</h2>
-                
-                <div class="space-y-4">
-                    <div class="border-b pb-4">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-semibold">Consultation - Dr. Dupont</h3>
-                            <span class="text-sm text-gray-600">15 Jan 2024</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Examen général de santé</p>
-                        <button class="mt-2 text-blue-600 text-sm hover:underline">
-                            Détails du Compte-Rendu
-                        </button>
-                    </div>
-
-                    <div class="border-b pb-4">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-semibold">Consultation - Dr. Martin</h3>
-                            <span class="text-sm text-gray-600">10 Dec 2023</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Suivi cardiologique</p>
-                        <button class="mt-2 text-blue-600 text-sm hover:underline">
-                            Détails du Compte-Rendu
-                        </button>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-semibold">Consultation - Dr. Leroy</h3>
-                            <span class="text-sm text-gray-600">22 Nov 2023</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Consultation pédiatrique</p>
-                        <button class="mt-2 text-blue-600 text-sm hover:underline">
-                            Détails du Compte-Rendu
-                        </button>
-                    </div>
-                </div>
-            </div> -->
         </div>
-    </div>
-    
+    </main>
+
   <!-- Footer -->
   <footer class="bg-white border-t mt-auto">
         <div class="container mx-auto px-4 py-8">
@@ -212,11 +154,6 @@
             </div>
         </div>
     </footer>
-    <script>
-        function gettaime(value) {
-            document.getElementById('input').value = value;
-        }
-    </script>
+  
 </body>
-
 </html>

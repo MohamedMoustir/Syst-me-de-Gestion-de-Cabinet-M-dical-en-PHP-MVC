@@ -42,15 +42,15 @@ class MedecinRepository
         $id = $data->getId();
         
         try {
-            $query = "SELECT m.*, u.* 
+            $query = "SELECT m.id as ad ,m.specialite,m.numero_ordre, u.* 
                       FROM public.medecins m
                       JOIN utilisateurs u ON m.utilisateur_id = u.id WHERE role = 'medecin'";
             
             if ($id) {
-                $query = "SELECT *
+                $query = "SELECT m.id as ad ,m.utilisateur_id ,m.specialite,m.numero_ordre, u.*
                           FROM public.medecins m
                           JOIN utilisateurs u ON m.utilisateur_id = u.id
-                          WHERE m.utilisateur_id = :id AND role = 'medecin'";
+                          WHERE m.id = :id AND role = 'medecin'";
             }
     
             $stmt = $this->pdo->prepare($query);
@@ -69,7 +69,7 @@ class MedecinRepository
             $medecins = [];
             foreach ($result as $row) {
                 $medecins[] = new Medecin(
-                    $row->id,
+                    $row->ad,
                     $row->nom,
                     $row->prenom,
                     $row->email,

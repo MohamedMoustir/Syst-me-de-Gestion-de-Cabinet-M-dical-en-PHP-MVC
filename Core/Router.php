@@ -1,35 +1,81 @@
 <?php
+// namespace Core;
+// require_once __DIR__ . '/../vendor/autoload.php';
+// use App\Controllers\MedecinController;
+
+// class Router
+// {
+//     public function route($action)
+//     {
+//         switch ($action) {
+//             case 'create':
+//                 header('location:../../app/View/auth/login.php');
+//                 break;
+//             case 'patient':
+//                 $controller = new MedecinController();
+//                 $controller->alldata();
+//                 break;
+//             case 'medecin':
+//                 header('location:../../app/View/medecins/dashboard.php');
+//                 break;
+//             case 'getRendezvous':
+              
+//                header('location:../../app/View/patients/table-Rendez-vous.php');
+//                 break;
+//             case 'rendezvous':
+//                 $controller = new MedecinController();
+//                 $controller->alldata();
+//                 break;
+//             default:
+//                 echo "Action ";
+//                 break;
+//         }
+//     }
+// }
 namespace Core;
 require_once __DIR__ . '/../vendor/autoload.php';
-// use App\Controllers\UtilisateurController;
+
 use App\Controllers\MedecinController;
 
 class Router
 {
-    public function route($action)
+    private $routes = [];
+
+    public function __construct()
     {
-        switch ($action) {
-            case 'create':
+      
+        $this->routes = [
+            'create' => function () {
                 header('location:../../app/View/auth/login.php');
-                break;
-            case 'patient':
+                exit;
+            },
+            'patient' => function () {
                 $controller = new MedecinController();
                 $controller->alldata();
-                break;
-            case 'medecin':
+            },
+            'medecin' => function () {
                 header('location:../../app/View/medecins/dashboard.php');
-                break;
-            case 'details':
+                exit;
+            },
+            'getRendezvous' => function () {
+                header('location:../../app/View/patients/table-Rendez-vous.php');
+                exit;
+            },
+            'rendezvous' => function () {
                 $controller = new MedecinController();
                 $controller->alldata();
-                break;
-            case 'rendezvous':
-                $controller = new MedecinController();
-                $controller->alldata();
-                break;
-            default:
-                echo "Action ";
-                break;
+            }
+        ];
+    }
+
+    public function dispatch()
+    {
+        $action = $_GET['action'] ?? 'default';
+        
+        if (isset($this->routes[$action])) {
+            call_user_func($this->routes[$action]);
+        } else {
+            echo "404 - Page Not Found";
         }
     }
 }

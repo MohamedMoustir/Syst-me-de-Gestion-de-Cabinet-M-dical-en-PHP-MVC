@@ -60,5 +60,66 @@
         ?>
         </div>
     </section>
+    
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-auto">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About Section -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-800">À propos</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">MediConnect simplifie la prise de rendez-vous médicaux en ligne pour tous les patients.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Liens rapides</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition">Trouver un médecin</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition">Prendre RDV</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition">Urgences</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Contact</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-gray-600">Email: contact@mediconnect.fr</li>
+                        <li class="text-gray-600">Tél: 01 23 45 67 89</li>
+                        <li class="text-gray-600">123 Rue de la Santé</li>
+                        <li class="text-gray-600">75000 Paris</li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Newsletter</h3>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Votre email" 
+                            class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-150 text-sm font-medium">
+                            S'abonner
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="mt-8 pt-8 border-t">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-sm text-gray-600">
+                        © 2024 MediConnect. Tous droits réservés.
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-sm text-gray-600 hover:text-blue-600 transition">Confidentialité</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-blue-600 transition">Conditions</a>
+                        <a href="#" class="text-sm text-gray-600 hover:text-blue-600 transition">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

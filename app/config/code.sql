@@ -1,6 +1,4 @@
 CREATE DATABASE cabinet_medical;
-\c cabinet_medical;
-
 
 CREATE TABLE utilisateurs (
     id SERIAL PRIMARY KEY,

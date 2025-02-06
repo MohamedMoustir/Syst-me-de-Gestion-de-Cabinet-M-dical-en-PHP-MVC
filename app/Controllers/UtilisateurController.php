@@ -41,8 +41,8 @@ class UtilisateurController
                $PatinetRepository = new PatinetRepository();
                $PatinetRepository->CreateProfilePatinet($utilisateur->getId(), $Patinet);
             }
-            $router = new Router();
-            $router->route('create');
+            // $router = new Router();
+            // $router->route('create');
          }
            
       }
@@ -62,10 +62,10 @@ class UtilisateurController
           
          }
       } 
-      if (isset($_GET['action'])) {
-    $router = new Router();
-     $router->route($_GET['action']);
-      }
+   //    if (isset($_GET['action'])) {
+   //  $router = new Router();
+   //   $router->route($_GET['action']);
+   //    }
       
    }
 
