@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
 
@@ -58,6 +60,12 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
+                    <?php 
+// var_dump($resulte);
+// foreach(){
+
+
+?>
                         <tr class="bg-white hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-4 whitespace-nowrap font-medium">15 Fév 2024</td>
                             <td class="px-6 py-4">09:00</td>
@@ -73,21 +81,9 @@
                                 <button class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
                             </td>
                         </tr>
-                        <tr class="bg-white hover:bg-gray-50 transition duration-150">
-                            <td class="px-6 py-4 whitespace-nowrap font-medium">18 Fév 2024</td>
-                            <td class="px-6 py-4">14:30</td>
-                            <td class="px-6 py-4 font-medium">Dr. Dupont</td>
-                            <td class="px-6 py-4">Généraliste</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700">
-                                    En attente
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-blue-600 hover:text-blue-800 font-medium transition">Modifier</button>
-                                <button class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
-                            </td>
-                        </tr>
+                        <?php 
+// }
+?>
                     </tbody>
                 </table>
             </div>

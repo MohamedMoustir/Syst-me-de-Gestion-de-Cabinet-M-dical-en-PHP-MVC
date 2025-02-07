@@ -7,7 +7,7 @@ use App\Model\Utilisateur;
 use App\Repository\UtilisateurRepository;
 use App\Repository\MedecinRepository;
 use App\Repository\PatinetRepository;
-use Core\Router;
+
 
 class UtilisateurController
 {
@@ -25,8 +25,10 @@ class UtilisateurController
             $utilisateur = new Utilisateur($id=null,$nom,$prenom,$email,$mot_de_passe,$role);
             
             $utilisateurRepo = new UtilisateurRepository();
-            $utilisateurRepo->register($utilisateur);
-       
+            $idUtilisateur=$utilisateurRepo->register($utilisateur);
+            
+            $utilisateur->setId($idUtilisateur);
+
             if ($role == 'medecin') {
                $Numero_Ordre = $_POST['Numero_Ordre'];
                $specialite = $_POST['Specialite'];
@@ -41,8 +43,7 @@ class UtilisateurController
                $PatinetRepository = new PatinetRepository();
                $PatinetRepository->CreateProfilePatinet($utilisateur->getId(), $Patinet);
             }
-            // $router = new Router();
-            // $router->route('create');
+            $this->redirectUser('create');
          }
            
       }
@@ -59,28 +60,25 @@ class UtilisateurController
             $utilisateur = new Utilisateur(null, null, $email, $password, null);
             $utilisateurRepo = new UtilisateurRepository();
             $utilisateurRepo->login($utilisateur);
+           
           
          }
       } 
-   //    if (isset($_GET['action'])) {
-   //  $router = new Router();
-   //   $router->route($_GET['action']);
-   //    }
+
       
    }
 
 
-   public   function redirectUser($role) {
-      if ($role == 'patient') {
-          header('Location: ../Controllers/UtilisateurController.php?action=patient');
-      } elseif ($role == 'medecin') {
-          header('Location: ../Controllers/UtilisateurController.php?action=medecin');
-      }
-      exit(); 
-  }
+    function redirectUser($role)
+   {
+       header('Location: /cabinet_Medical/public/index.php?action=' . $role);
+       exit();
+   }
+
 
    public   function initializeSession($user)
    {
+      var_dump($user);
       session_start();
       $_SESSION['id'] = $user->getId();
       $_SESSION['email'] = $user->getEmail();
@@ -90,11 +88,10 @@ class UtilisateurController
 
 }
 
-$register = new UtilisateurController();
-$register->register();
-$register->login();
 
 
+// $Rendezvous = new RendezVousController();
+// $Rendezvous->Rendezvous();
 
 
 

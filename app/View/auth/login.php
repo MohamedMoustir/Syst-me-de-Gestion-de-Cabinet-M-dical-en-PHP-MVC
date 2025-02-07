@@ -16,7 +16,7 @@
             <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">MediConnect</h1>
 
             <!-- Login Form -->
-            <form method="POST" class="space-y-4" action="../../Controllers/UtilisateurController.php">
+            <form method="POST" class="space-y-4" action="../public/index.php?action=users">
                 <div>
                     <label class="block text-gray-700 mb-2">Email</label>
                     <input type="email" name="email" placeholder="Votre email"

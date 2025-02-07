@@ -13,7 +13,7 @@ class Rendezvous
     private string $date_creation;
 
 
-    public function __construct( $patient_id,  $medecin_id,  $time, $motif,$date_creation =null)
+    public function __construct( $patient_id,  $medecin_id,  $time, $motif,$date_creation)
     {
         $this->patient_id = $patient_id;
         $this->medecin_id = $medecin_id;

@@ -30,9 +30,11 @@ class RendezvousRepository
                       VALUES (:patient_id, :medecin_id, :date_rendezvous, :motif)';
     
             $stmt = $this->pdo->prepare($query);
-    
-            $date_rendezvous = date('Y-m-d H:i:s', strtotime($rendezvous->getTime()));
-    
+            if (!empty($rendezvous->getTime())) {
+                $date_rendezvous = date('Y-m-d H:i:s', strtotime($rendezvous->getTime()));
+            } else {
+                $date_rendezvous = date('Y-m-d H:i:s');
+            }
             $stmt->bindValue(':patient_id', $rendezvous->getPatientId(), PDO::PARAM_INT);
             $stmt->bindValue(':medecin_id', $rendezvous->getMedecinId(), PDO::PARAM_INT);
             $stmt->bindValue(':date_rendezvous', $date_rendezvous, PDO::PARAM_STR);

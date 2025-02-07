@@ -45,7 +45,7 @@
                         <p>Monday - Friday: 8:00 AM - 4:00 PM</p>
                         <p>Saturday: 8:00 AM - 12:00 PM</p>
                     </div>
-                    <a  href="../Controllers/UtilisateurController.php?action=rendezvous&details=<?=  $medecin->getId() ?>" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <a  href="../public/index.php?action=rendezvous&details=<?=  $medecin->getId() ?>" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Book Appointment
                     </a>
                 </div>

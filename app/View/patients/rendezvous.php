@@ -1,4 +1,6 @@
-<?php var_dump($resulte->specialite); ?>
+<?php 
+
+// var_dump($resulte->specialite  )?>
 
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
@@ -51,7 +53,7 @@
             <div class="bg-white rounded-xl shadow-lg p-6">
                 <h2 class="text-2xl font-bold text-blue-600 mb-6">Prendre Rendez-vous</h2>
 
-                <form method="POST" action="../Controllers/RendezVousController.php?action=getRendezvous" class="space-y-4">
+                <form method="POST" action="../public/index.php?action=getRendezvous" class="space-y-4">
                     <div>
                         <label class="block text-gray-700 mb-2">Choisir un Médecin</label>
                         <select name="id_medecin" class="w-full px-3 py-2 border rounded-md">
