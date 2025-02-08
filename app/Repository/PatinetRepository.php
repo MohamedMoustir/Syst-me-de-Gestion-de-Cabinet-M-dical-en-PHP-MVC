@@ -42,10 +42,17 @@ class PatinetRepository
 
     public function LstRendezvous($data)
 {
+   
+  
+        // if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'medecin' ) {
+        //     header('Location:../public/index.php');
+        //     exit;
+        //   }
+        
     $id = $data->getId();
 
     try {
-        $query = "SELECT 
+        $query = "SELECT DISTINCT 
             r.id AS rendezvous_id, r.date_rendezvous, r.statut, r.motif, r.date_creation,
             u.nom AS patient_nom, 
             t.nom AS medecin_nom,
@@ -59,6 +66,7 @@ class PatinetRepository
         JOIN utilisateurs t ON m.utilisateur_id = t.id
         WHERE p.id = :id";
 
+
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -68,40 +76,44 @@ class PatinetRepository
         if ($results) {
             $appointments = [];
             foreach ($results as $result) {
-                // Instantiating the Patient, Medecin, and Rendezvous objects
                 $patient = new Patinet(
-                    $result->patient_id,
-                    $result->patient_nom,
+                    $result->patient_id ?? null,
+                    $result->patient_nom ?? '',
                     '', '', '', '', '', ''
                 );
-
+        
                 $medecin = new Medecin(
-                    '', // Assuming we don't need to pass an ID for Medecin
-                    $result->medecin_nom,
-                    '', '', '', '', '', $result->specialite
+                    '', 
+                    $result->medecin_nom ?? '',
+                    '', '', '', '', '', $result->specialite ?? ''
                 );
-
+        
                 $rendezvous = new Rendezvous(
                     $result->rendezvous_id,
-                    $result->medecin_id, 
-                    $result->date_rendezvous,
-                    $result->motif,
-                    $result->date_creation
+                    $result->rendezvous_id ?? null,
+                    $result->medecin_id ?? null, 
+                    $result->date_rendezvous ?? '',
+                    $result->motif ?? '',
+                    $result->date_creation ?? '',
+                    $result->statut ?? ''
                 );
-
-                // Adding them to the appointments array
-                $appointments[] = [$patient, $medecin, $rendezvous];
+        
+                if (!in_array([$patient, $medecin, $rendezvous], $appointments)) {
+                    $appointments[] = [$patient, $medecin, $rendezvous];
+                }
             }
-
+        
             return $appointments;
         } else {
             return "No appointments found.";
         }
+        
 
     } catch (PDOException $e) {
         error_log("Error listing appointments: " . $e->getMessage());
         return null;
     }
 }
+
 
 }

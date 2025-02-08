@@ -34,7 +34,7 @@ class UtilisateurRepository
 
             $lastInsertId = $this->pdo->lastInsertId();
             $utilisateur->setId($lastInsertId);
-            return true;
+            return $lastInsertId;
 
         } catch (PDOException $e) {
             echo "Erreur: " . $e->getMessage();
@@ -42,25 +42,29 @@ class UtilisateurRepository
 
     }
 
-    public function login($users)
+    public function login($user)
     {
+
         try {
-            $query = "SELECT p.id as p, u.nom, u.prenom, u.email, u.role, 
-                      m.specialite, p.date_naissance , u.mot_de_passe
-                      FROM utilisateurs u
-                      LEFT JOIN medecins m ON u.id = m.utilisateur_id
-                      LEFT JOIN patients p ON u.id = p.utilisateur_id
-                      WHERE u.email = :email";
+            $query = "SELECT COALESCE(p.id, m.id) as user_id, 
+            u.nom, u.prenom, u.email, u.role, 
+            m.specialite, p.date_naissance, u.mot_de_passe
+            FROM utilisateurs u
+            LEFT JOIN medecins m ON u.id = m.utilisateur_id
+            LEFT JOIN patients p ON u.id = p.utilisateur_id
+            WHERE u.email = :email;
+                ";
 
             $stmt = $this->pdo->prepare($query);
-            $email = $users->getEmail();
+            $email = $user->getEmail();
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_OBJ);
 
+
             if ($row) {
-                $user = new Utilisateur($row->p, $row->nom, $row->prenom, $row->email, $row->mot_de_passe, $row->role);
+                $user = new Utilisateur($row-> user_id, $row->nom, $row->prenom, $row->email, $row->mot_de_passe, $row->role);
             } else {
                 $user = null;
             }
@@ -70,6 +74,7 @@ class UtilisateurRepository
                 $register->initializeSession($user);
                 $register->redirectUser($user->getRole());
             }
+
 
             return $user;
         } catch (PDOException $e) {
