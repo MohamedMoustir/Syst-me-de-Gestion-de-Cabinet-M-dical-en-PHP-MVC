@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
 
@@ -19,7 +17,7 @@
                 <div class="flex items-center">
                     <a href="#" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">MediConnect</a>
                 </div>
-                
+
                 <!-- Navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Accueil</a>
@@ -32,12 +30,15 @@
                 <div class="flex items-center space-x-4">
                     <button class="text-gray-700 hover:text-blue-600 transition p-2 rounded-full hover:bg-gray-100">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
                         </svg>
                     </button>
-                    <button class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition p-1 rounded-full hover:bg-gray-100">
-                        <img class="h-8 w-8 rounded-full border-2 border-gray-200" src="/api/placeholder/32/32" alt="User profile">
+                    <button
+                        class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition p-1 rounded-full hover:bg-gray-100">
+                        <img class="h-8 w-8 rounded-full border-2 border-gray-200" src="/api/placeholder/32/32"
+                            alt="User profile">
                     </button>
                 </div>
             </div>
@@ -60,44 +61,46 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                    <?php 
-// var_dump($resulte);
-// foreach(){
+                        <?php
 
 
-?>
-                        <tr class="bg-white hover:bg-gray-50 transition duration-150">
-                            <td class="px-6 py-4 whitespace-nowrap font-medium">15 Fév 2024</td>
-                            <td class="px-6 py-4">09:00</td>
-                            <td class="px-6 py-4 font-medium">Dr. Martin</td>
-                            <td class="px-6 py-4">Cardiologie</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
-                                    Confirmé
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="text-blue-600 hover:text-blue-800 font-medium transition">Modifier</button>
-                                <button class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
-                            </td>
-                        </tr>
-                        <?php 
-// }
-?>
+                        foreach ($resulte as $res) {
+                            ?>
+                            <tr class="bg-white hover:bg-gray-50 transition duration-150">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium"><?= date("d M Y", strtotime($res[2]->getDate_creation())) ?></td>
+                                <td class="px-6 py-4"><?= date('H:i', strtotime($res[2]->getTime())) ?></td>
+                                <td class="px-6 py-4 font-medium">Dr. <?= $res[1]->getNom() ?></td>
+                                <td class="px-6 py-4"><?= $res[1]->getSpecialite()?></td>
+                                <td class="px-6 py-4">
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+                                        Confirmé
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button
+                                        class="text-blue-600 hover:text-blue-800 font-medium transition">Modifier</button>
+                                    <button
+                                        class="ml-4 text-red-600 hover:text-red-800 font-medium transition">Annuler</button>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t mt-auto">
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-auto">
         <div class="container mx-auto px-4 py-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- About Section -->
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-800">À propos</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">MediConnect simplifie la prise de rendez-vous médicaux en ligne pour tous les patients.</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">MediConnect simplifie la prise de rendez-vous
+                        médicaux en ligne pour tous les patients.</p>
                 </div>
 
                 <!-- Quick Links -->
@@ -126,9 +129,10 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-800">Newsletter</h3>
                     <form class="space-y-3">
-                        <input type="email" placeholder="Votre email" 
+                        <input type="email" placeholder="Votre email"
                             class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-150 text-sm font-medium">
+                        <button
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-150 text-sm font-medium">
                             S'abonner
                         </button>
                     </form>
@@ -150,6 +154,7 @@
             </div>
         </div>
     </footer>
-  
+
 </body>
+
 </html>

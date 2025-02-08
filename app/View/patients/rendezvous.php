@@ -1,6 +1,6 @@
-<?php 
 
-// var_dump($resulte->specialite  )?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
