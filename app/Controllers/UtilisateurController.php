@@ -27,8 +27,6 @@ class UtilisateurController
             $utilisateurRepo = new UtilisateurRepository();
             $idUtilisateur=$utilisateurRepo->register($utilisateur);
             
-            // $utilisateur->setId($idUtilisateur);
-
             if ($role == 'medecin') {
                $Numero_Ordre = $_POST['Numero_Ordre'];
                $specialite = $_POST['Specialite'];

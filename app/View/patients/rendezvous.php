@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr" class="bg-gray-50">
 
@@ -25,8 +21,8 @@
                 <!-- Navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Accueil</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Rendez-vous</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Médecins</a>
+                    <a href="" class="text-gray-700 hover:text-blue-600 transition font-medium">Rendez-vous</a>
+                    <a href="index.php?action=patient" class="text-gray-700 hover:text-blue-600 transition font-medium">Médecins</a>
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Contact</a>
                 </nav>
 

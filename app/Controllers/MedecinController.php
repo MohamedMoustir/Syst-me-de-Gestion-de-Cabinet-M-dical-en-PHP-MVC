@@ -12,6 +12,10 @@ class MedecinController
   public function alldata()
   {
     session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'medecin' ) {
+        header('Location:index.php');
+        exit;
+    }
     $id = isset($_GET['details']) ? $_GET['details'] : null;
     $med = new Medecin($id, '', '', '', '', '', '', '');
     $medecin = new MedecinRepository();
@@ -23,12 +27,13 @@ class MedecinController
     }
   }
   public function getRendezvousMedecin()
-  {
-    // if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
-    //     header('Location:index.php');
-    //     exit;
-    // }
+  {    
     session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
+        header('Location:index.php');
+        exit;
+    }
+
 
     $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     $med = new Medecin($id, '', '', '', '', '', '', '');
@@ -41,6 +46,12 @@ class MedecinController
   public function statistiques()
   {
     session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
+        header('Location:index.php');
+        exit;
+    }
+
+  
     $medecin_id = isset($_SESSION['id']) ? $_SESSION['id']  : null;
     $MedecinRepository = new MedecinRepository();
     $approvedAppointments = $MedecinRepository->getApprovedAppointmentsPerMedecin($medecin_id);

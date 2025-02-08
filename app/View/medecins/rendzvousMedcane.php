@@ -96,7 +96,7 @@ if (!empty($result) && is_array($result)) {
             </td>
         </tr>
 <?php 
-    } // نهاية الحلقة foreach
+    } 
 } else { 
 ?>
     <tr>
@@ -129,7 +129,7 @@ if (!empty($result) && is_array($result)) {
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
-        <p class="mt-4 text-xs text-gray-300">Developed with ❤️ by Your Name</p>
+        <p class="mt-4 text-xs text-gray-300">Developed with moustir by Your Name</p>
     </div>
 </footer>
 

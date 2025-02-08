@@ -11,15 +11,34 @@
 
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-blue-900 py-8">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold text-white mb-2">Our Medical Team</h1>
-                <nav class="text-blue-200">
-                    <a href="#" class="hover:text-blue-400 transition-colors">Home</a>
-                    <span class="mx-2">/</span>
-                    <a href="#" class="hover:text-blue-400 transition-colors">Doctors</a>
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Name -->
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">MediConnect</a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.php?action=patient" class="text-gray-700 hover:text-blue-600 transition font-medium">Accueil</a>
+                    <a href="" class="text-gray-700 hover:text-blue-600 transition font-medium">Rendez-vous</a>
+                    <a href="index.php?action=patient" class="text-gray-700 hover:text-blue-600 transition font-medium">Médecins</a>
+                    <a href="" class="text-gray-700 hover:text-blue-600 transition font-medium">Contact</a>
                 </nav>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-700 hover:text-blue-600 transition p-2 rounded-full hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                    </button>
+                    <button class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition p-1 rounded-full hover:bg-gray-100">
+                        <img class="h-8 w-8 rounded-full border-2 border-gray-200" src="/api/placeholder/32/32" alt="User profile">
+                    </button>
+                </div>
             </div>
         </div>
     </header>

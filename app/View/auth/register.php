@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediConnect - Inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="/manifest.json">
+
 </head>
 
 <body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex items-center justify-center p-4">
-
 
 <form id="registerForm" method="POST" action="index.php?action=create"
     class="w-full max-w-md bg-white shadow-lg rounded-lg p-8" onsubmit="return validateForm()">
@@ -128,7 +129,7 @@
         const nom = document.getElementById("nom");
         const email = document.getElementById("email");
         const mot_de_passe = document.getElementById("mot_de_passe");
-        const numeroSociale = document.getElementById("numeroSociale");
+        // const numeroSociale = document.getElementById("numeroSociale");
         // const Numero_Ordre = document.getElementById("Numero_Ordre");
 
         // Validation
@@ -148,15 +149,11 @@
             alert("Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un symbole.");
             isValid = false;
         }
-        if (numeroSociale && !numberRegex.test(numeroSociale.value)) {
-            alert("Numéro de Sécurité Sociale invalide !");
-            isValid = false;
-        }
-        if (Numero_Ordre && !numberRegex.test(Numero_Ordre.value)) {
-            alert("Numéro d'Ordre invalide !");
-            isValid = false;
-        }
-
+        // if (numeroSociale && !numberRegex.test(numeroSociale.value)) {
+        //     alert("Numéro de Sécurité Sociale invalide !");
+        //     isValid = false;
+        // }
+        
         return isValid;
     }
 </script>

@@ -28,12 +28,12 @@ class Router
                 $controller->alldata();
             },
             'login' => function () {
-                
+
                 $controller = new UtilisateurController();
                 $controller->login();
             },
             'users' => function () {
-              
+
                 $role = $_SESSION['role'] ?? 'default_role';
                 $register = new UtilisateurController();
                 $register->redirectUser($role);
@@ -52,7 +52,6 @@ class Router
                 $controller->alldata();
             },
             'medecin' => function () {
-                // require_once '../app/View/medecins/dashboard.php';
                 $statistiques = new MedecinController();
                 $statistiques->statistiques();
 
@@ -74,23 +73,20 @@ class Router
                 $MedecinController = new MedecinController();
                 $MedecinController->getRendezvousMedecin();
             },
-             'Annuler' => function () {
-               
+            'Annuler' => function () {
+
                 $Annuler = new RendezVousController();
                 $Annuler->VeriffeCancelRendezvous();
 
-            },'approuved' => function () {
+            },
+            'approuved' => function () {
                 $approuved = new RendezVousController();
                 $approuved->VeriffeapprouvedRendezvous();
-                // header('location : index.php?action=approuved');
             }
-            ,'Consultation' => function () {
-                // $patient_id = isset($_GET['ConsultationID']) ? $_GET['ConsultationID'] : null;
+            ,
+            'Consultation' => function () {
                 $Consultation = new RendezVousController();
                 $Consultation->insertinsertConsultationController();
-                // header('loction:index.php?Consultation&ConsultationID= '. $patient_id);
-                // header('location : ../index.php?action=Utilisater');
-
             }
         ];
     }
@@ -101,7 +97,7 @@ class Router
         if (isset($this->routes[$action])) {
             call_user_func($this->routes[$action]);
         } else {
-            // echo "404 - Page Not Found";
+            echo "404 - Page Not Found";
         }
     }
 }
