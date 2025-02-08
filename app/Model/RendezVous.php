@@ -6,20 +6,28 @@ namespace App\Model;
 
 class Rendezvous
 {
+    private int $id;
+
     private int $patient_id;
     private int $medecin_id;
     private string $time;
     private string $motif;
     private string $date_creation;
+    private string $statut;
 
 
-    public function __construct( $patient_id,  $medecin_id,  $time, $motif,$date_creation)
-    {
+
+    public function __construct($id, $patient_id,  $medecin_id,  $time, $motif,$date_creation,$statut)
+    {  $this->id = $id;
         $this->patient_id = $patient_id;
         $this->medecin_id = $medecin_id;
         $this->time = $time;
         $this->motif = $motif;
         $this->date_creation = $date_creation;
+        $this->statut = $statut;
+      
+
+
 
     }
 
@@ -46,6 +54,13 @@ class Rendezvous
     public function getDate_creation(): string
     {
         return $this->date_creation;
+    } public function getstatut(): string
+    {
+        return $this->statut;
+    }
+    public function getIDR(): string
+    {
+        return $this->id;
     }
     // Setters
     public function setPatientId( $patient_id): void
@@ -70,5 +85,13 @@ class Rendezvous
     public function setDate_creation( $date_creation): void
     {
         $this->date_creation = $date_creation;
+    } public function setStatut( $statut): void
+    {
+        $this->statut = $statut;
     }
+    public function setIDR( $id): void
+    {
+        $this->id = $id;
+    }
+
 }
