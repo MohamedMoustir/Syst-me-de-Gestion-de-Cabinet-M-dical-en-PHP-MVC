@@ -1,5 +1,8 @@
 
-
+<?php
+// session_start();
+// var_dump($_SESSION['role']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,7 +19,7 @@
             <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">MediConnect</h1>
 
             <!-- Login Form -->
-            <form method="POST" class="space-y-4" action="../public/index.php?action=users">
+            <form method="POST" class="space-y-4" action="index.php?action=login">
                 <div>
                     <label class="block text-gray-700 mb-2">Email</label>
                     <input type="email" name="email" placeholder="Votre email"
@@ -43,7 +46,7 @@
             <!-- Registration Link -->
             <div class="text-center">
                 <p class="text-gray-600">Vous n'avez pas de compte ?</p>
-                <a href="#" class="text-blue-600 hover:underline">
+                <a href="../public/index.php?action=register" class="text-blue-600 hover:underline">
                     Créer un compte
                 </a>
             </div>
