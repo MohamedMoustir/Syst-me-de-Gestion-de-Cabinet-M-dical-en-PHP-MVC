@@ -18,26 +18,24 @@ class Router
     {
 
         $this->routes = [
-
-            'register' => function () {
-                header('location:../app/View/auth/register.php');
-                exit;
-            },
             'create' => function () {
                 $register = new UtilisateurController();
                 $register->register();
-                require_once 'location:../../../app/View/auth/login.php';
                 exit;
             },
             'patient' => function () {
                 $controller = new MedecinController();
                 $controller->alldata();
             },
+            'login' => function () {
+                
+                $controller = new UtilisateurController();
+                $controller->login();
+            },
             'users' => function () {
-                session_start();
+              
                 $role = $_SESSION['role'] ?? 'default_role';
                 $register = new UtilisateurController();
-                $register->login();
                 $register->redirectUser($role);
                 exit;
             },
@@ -46,7 +44,6 @@ class Router
                 $Rendezvous->Rendezvous();
                 $PatientController = new PatientController();
                 $PatientController->getRendezvous();
-                require_once '../app/View/patients/table-Rendez-vous.php';
                 exit;
             },
             'rendezvous' => function () {
@@ -55,7 +52,44 @@ class Router
                 $controller->alldata();
             },
             'medecin' => function () {
-                require_once '../app/View/medecins/dashboard.php';
+                // require_once '../app/View/medecins/dashboard.php';
+                $statistiques = new MedecinController();
+                $statistiques->statistiques();
+
+            },
+            'logout' => function () {
+                session_start();
+                $logout = new UtilisateurController();
+                $logout->logout();
+                exit;
+
+            },
+            'register' => function () {
+                require('../app/View/auth/register.php');
+                exit;
+
+            },
+
+            'Utilisater' => function () {
+                $MedecinController = new MedecinController();
+                $MedecinController->getRendezvousMedecin();
+            },
+             'Annuler' => function () {
+               
+                $Annuler = new RendezVousController();
+                $Annuler->VeriffeCancelRendezvous();
+
+            },'approuved' => function () {
+                $approuved = new RendezVousController();
+                $approuved->VeriffeapprouvedRendezvous();
+                // header('location : index.php?action=approuved');
+            }
+            ,'Consultation' => function () {
+                // $patient_id = isset($_GET['ConsultationID']) ? $_GET['ConsultationID'] : null;
+                $Consultation = new RendezVousController();
+                $Consultation->insertinsertConsultationController();
+                // header('loction:index.php?Consultation&ConsultationID= '. $patient_id);
+                // header('location : ../index.php?action=Utilisater');
 
             }
         ];
@@ -63,12 +97,11 @@ class Router
 
     public function dispatch()
     {
-        $action = $_GET['action'] ?? 'register';
-
+        $action = $_GET['action'] ?? 'login';
         if (isset($this->routes[$action])) {
             call_user_func($this->routes[$action]);
         } else {
-            echo "404 - Page Not Found";
+            // echo "404 - Page Not Found";
         }
     }
 }
