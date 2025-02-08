@@ -40,5 +40,5 @@ CREATE TABLE rendezvous (
 
 CREATE INDEX idx_utilisateurs_role ON utilisateurs(role); 
 CREATE INDEX idx_rendezvous_date ON rendezvous(date_rendezvous);
-CREATE INDEX idx_notifications_utilisateur ON notifications(utilisateur_id);
+CREATE INDEX idx_notifications_utilisateur ON notifications(utilisateur_id); iwant patient li darou roundevo
 
