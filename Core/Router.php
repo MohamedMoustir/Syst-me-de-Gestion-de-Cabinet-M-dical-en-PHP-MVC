@@ -83,6 +83,9 @@ class Router
             'Consultation' => function () {
                 $Consultation = new RendezVousController();
                 $Consultation->insertinsertConsultationController();
+            },
+            '404' => function () {
+                require_once '404.php';
             }
         ];
     }
@@ -93,7 +96,7 @@ class Router
         if (isset($this->routes[$action])) {
             call_user_func($this->routes[$action]);
         } else {
-            echo "404 - Page Not Found";
+            call_user_func($this->routes['404']);
         }
     }
 }

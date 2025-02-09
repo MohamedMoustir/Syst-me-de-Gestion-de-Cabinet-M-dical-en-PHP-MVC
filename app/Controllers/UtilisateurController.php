@@ -8,7 +8,6 @@ use App\Repository\UtilisateurRepository;
 use App\Repository\MedecinRepository;
 use App\Repository\PatinetRepository;
 
-
 class UtilisateurController
 {
 
