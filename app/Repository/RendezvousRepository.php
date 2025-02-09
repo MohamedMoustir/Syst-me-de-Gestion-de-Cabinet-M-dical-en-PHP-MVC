@@ -45,10 +45,6 @@ class RendezvousRepository
             return false;
         }
     }
-    
-
-
-
     public function CancelRendezvous($id) {
         try {
            

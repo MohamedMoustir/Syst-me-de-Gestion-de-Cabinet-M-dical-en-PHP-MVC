@@ -20,11 +20,12 @@ class RendezVousController
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Rendezvous'])) {
       if (isset($_POST['id_medecin'], $_POST['motif'], $_POST['time'])) {
 
-        $medecin_id = $_POST['id_medecin'];
-        $motif = $_POST['motif'];
-        $time = $_POST['time'];
+        $medecin_id = isset($_POST['id_medecin']) ? intval($_POST['id_medecin']) : null;
+        $motif = isset($_POST['motif']) ? htmlspecialchars($_POST['motif'], ENT_QUOTES, 'UTF-8') : '';
+        $time = isset($_POST['time']) ? htmlspecialchars($_POST['time'], ENT_QUOTES, 'UTF-8') : '';
 
-        $patient_id = $_SESSION['id'];
+
+        $patient_id = htmlspecialchars($_SESSION['id'], ENT_QUOTES, 'UTF-8');
         $Rendezvous = new Rendezvous(0, $patient_id, $medecin_id, $time, $motif, '', '');
         $RendezvousRep = new RendezvousRepository();
         $RendezvousRep->Rendezvou($Rendezvous);
@@ -54,18 +55,20 @@ class RendezVousController
   public function insertinsertConsultationController()
   {
     session_start();
-   
-    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
-        header('Location:index.php');
-        exit;
+
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient') {
+      header('Location:index.php');
+      exit;
     }
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Consultation'])) {
       if (isset($_POST['date_consultation'], $_POST['treatment'], $_POST['notes'])) {
-        $date_consultation = $_POST['date_consultation'];
-        $patient_id = $_POST['id'];
 
-        $treatment = $_POST['treatment'];
-        $notes = $_POST['notes'];
+        $date_consultation = isset($_POST['date_consultation']) ? htmlspecialchars($_POST['date_consultation'], ENT_QUOTES, 'UTF-8') : '';
+        $patient_id = isset($_POST['id']) ? intval($_POST['id']) : null;
+        $treatment = isset($_POST['treatment']) ? htmlspecialchars($_POST['treatment'], ENT_QUOTES, 'UTF-8') : '';
+        $notes = isset($_POST['notes']) ? htmlspecialchars($_POST['notes'], ENT_QUOTES, 'UTF-8') : '';
+
+
         $Medecin_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         var_dump($patient_id);
         $med = new Rendezvous(1, $patient_id, $Medecin_id, '', '', '', '');

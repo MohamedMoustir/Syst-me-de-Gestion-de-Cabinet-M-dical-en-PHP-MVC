@@ -12,11 +12,11 @@ class MedecinController
   public function alldata()
   {
     session_start();
-    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'medecin' ) {
-        header('Location:index.php');
-        exit;
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'medecin') {
+      header('Location:index.php');
+      exit;
     }
-    $id = isset($_GET['details']) ? $_GET['details'] : null;
+    $id = isset($_GET['details']) ? htmlspecialchars($_GET['details'], ENT_QUOTES, 'UTF-8') : null;
     $med = new Medecin($id, '', '', '', '', '', '', '');
     $medecin = new MedecinRepository();
     $resulte = $medecin->ListMedecin($med);
@@ -27,15 +27,15 @@ class MedecinController
     }
   }
   public function getRendezvousMedecin()
-  {    
+  {
     session_start();
-    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
-        header('Location:index.php');
-        exit;
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient') {
+      header('Location:index.php');
+      exit;
     }
 
 
-    $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    $id = isset($_SESSION['id']) ? htmlspecialchars($_SESSION['id'], ENT_QUOTES, 'UTF-8') : null;
     $med = new Medecin($id, '', '', '', '', '', '', '');
     $MedecinRepository = new MedecinRepository();
     $result = $MedecinRepository->LstRendezvousMedecin($med);
@@ -46,13 +46,13 @@ class MedecinController
   public function statistiques()
   {
     session_start();
-    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient' ) {
-        header('Location:index.php');
-        exit;
+    if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'patient') {
+      header('Location:index.php');
+      exit;
     }
 
-  
-    $medecin_id = isset($_SESSION['id']) ? $_SESSION['id']  : null;
+
+    $medecin_id = isset($_SESSION['id']) ? htmlspecialchars($_SESSION['id'], ENT_QUOTES, 'UTF-8') : null;
     $MedecinRepository = new MedecinRepository();
     $approvedAppointments = $MedecinRepository->getApprovedAppointmentsPerMedecin($medecin_id);
     $cancelledAppointments = $MedecinRepository->getCancelledAppointmentsPerMedecin($medecin_id);

@@ -43,11 +43,6 @@ class PatinetRepository
     public function LstRendezvous($data)
 {
    
-  
-        // if (!isset($_SESSION['role']) || $_SESSION['role'] === '' || $_SESSION['role'] == 'medecin' ) {
-        //     header('Location:../public/index.php');
-        //     exit;
-        //   }
         
     $id = $data->getId();
 

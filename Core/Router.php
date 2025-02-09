@@ -6,10 +6,6 @@ use App\Controllers\UtilisateurController;
 use App\Controllers\RendezVousController;
 use App\Controllers\PatientController;
 
-
-
-
-
 class Router
 {
     private $routes = [];

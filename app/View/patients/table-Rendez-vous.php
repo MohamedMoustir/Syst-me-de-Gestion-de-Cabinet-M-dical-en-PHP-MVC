@@ -22,8 +22,10 @@
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Accueil</a>
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Rendez-vous</a>
-                    <a href="index.php?action=patient" class="text-gray-700 hover:text-blue-600 transition font-medium">Médecins</a>
+                    <a href="index.php?action=patient"
+                        class="text-gray-700 hover:text-blue-600 transition font-medium">Médecins</a>
                     <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Contact</a>
+                   
                 </nav>
 
                 <!-- User Menu -->
@@ -40,6 +42,10 @@
                         <img class="h-8 w-8 rounded-full border-2 border-gray-200" src="/api/placeholder/32/32"
                             alt="User profile">
                     </button>
+                    <a href="index.php?action=logout"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                        Déconnexion
+                    </a>
                 </div>
             </div>
         </div>
@@ -67,24 +73,25 @@
                         foreach ($resulte as $res) {
                             ?>
                             <tr class="bg-white hover:bg-gray-50 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap font-medium"><?= date("d M Y", strtotime($res[2]->getDate_creation())) ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">
+                                    <?= date("d M Y", strtotime($res[2]->getDate_creation())) ?></td>
                                 <td class="px-6 py-4"><?= date('H:i', strtotime($res[2]->getTime())) ?></td>
                                 <td class="px-6 py-4 font-medium">Dr. <?= $res[1]->getNom() ?></td>
-                                <td class="px-6 py-4"><?= $res[1]->getSpecialite()?></td>
+                                <td class="px-6 py-4"><?= $res[1]->getSpecialite() ?></td>
                                 <td class="px-6 py-4">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full 
-    <?php 
-        $status = isset($res[2]) ? $res[2]->getstatut() : 'unknown';
-        if ($status == 'approuved') {
-            echo 'bg-green-100 text-green-700 border-green-400';
-        } elseif ($status == 'rejected') {
-            echo 'bg-yellow-100 text-yellow-700 border-yellow-400';
-        } else {
-            echo 'bg-red-100 text-red-700 border-red-400';
-        }
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full 
+    <?php
+    $status = isset($res[2]) ? $res[2]->getstatut() : 'unknown';
+    if ($status == 'approuved') {
+        echo 'bg-green-100 text-green-700 border-green-400';
+    } elseif ($status == 'rejected') {
+        echo 'bg-yellow-100 text-yellow-700 border-yellow-400';
+    } else {
+        echo 'bg-red-100 text-red-700 border-red-400';
+    }
     ?>">
-    <?= ucfirst($status); ?>
-</span>
+                                        <?= ucfirst($status); ?>
+                                    </span>
 
                                 </td>
                                 <td class="px-6 py-4">
